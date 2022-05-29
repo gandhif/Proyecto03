@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--link to CSS-->
+    <link rel "stylesheet" href = "style.css">
+    <title>Employee salaries bar graph</title>
+    
+  </head>
+  <body>
+    <div class="chartMenu">
+      <p>Employees salaries | Bar chart </p>
+    </div>
+    <div class="chartCard">
+      <div class="chartBox">
+        <canvas id="myChart"></canvas>
+      </div>
+    </div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="text/javascript" src="apps.js"></script>
+
+    <script>
+        let employeeFullName =[];
+        let employeeSalaryData =[];
+
+        async function drawChart(){
+          await apiData()
+  // setup 
+      const data = {
+        labels: employeeFullName,
+        datasets: [{
+          label: 'Annual Salary',
+          data: employeeSalaryData,
+          backgroundColor: 'rgba(255, 26, 104, 0.2)',
+          borderColor: 'rgba(255, 26, 104, 1)',
+          borderWidth: 1
+       }]
+     };
+
+  // config 
+      const config = {
+        type: 'bar',
+        data,
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      };
+
+      // render init block
+      const myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+      );
+       //   console.log(employeeFullName)
+      }
+      drawChart()
+    </script>
+
+  </body>
+</html>
