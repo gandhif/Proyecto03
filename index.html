@@ -1,65 +1,89 @@
-<!doctype html>
+
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--link to CSS-->
-    <link rel "stylesheet" href = "style.css">
-    <title>Employee salaries bar graph</title>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script type="text/javascript" src="apps.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <canvas id="myChart"></canvas>
+  </div>
+  <script>
+    let employedSalariData = [];
+    let employedFullName = [];
+
+    async function drawChart(){
+      console.log("hola");
+      await apiData();
+
+      const dataf = {
+      labels: employedFullName,
+      datasets: [{
+        label: 'Grafica Salario Por Persona',
+        data: employedSalariData,
+        backgroundColor: [
+        'rgb(255, 200, 132)',
+        'rgb(255, 210, 132)',
+        'rgb(255, 220, 132)',
+        'rgb(255, 230, 132)',
+        'rgb(255, 240, 132)',
+        'rgb(255, 250, 132)',
+        'rgb(255, 99, 200)',
+        'rgb(255, 99, 250)',
+        'rgb(250, 99, 132)',
+        'rgb(240, 99, 132)',
+        'rgb(230, 99, 132)',
+        'rgb(220, 99, 132)',
+        'rgb(210, 99, 132)',
+        'rgb(200, 99, 132)',
+        'rgb(190, 99, 132)',
+        'rgb(180, 99, 132)',
+        'rgb(170, 99, 132)',
+        'rgb(160, 99, 132)',
+        'rgb(150, 99, 132)',
+        'rgb(140, 99, 132)',
+        'rgb(130, 99, 132)',
+        'rgb(120, 99, 132)',
+        'rgb(110, 99, 132)',
+        'rgb(100, 99, 132)',
+        ],
+        
+        borderColor: 'rgb(255, 99, 132)',        
+      }]
+    };
+
+    const config = {
+      type: 'bar',
+      data: dataf,
+      options: {}
+    };   
+
+    const myChart = new Chart(document.getElementById('myChart'),config);
+
+
+    }
+
+
+/*     const labels = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+    ]; */
+  
     
-  </head>
-  <body>
-    <div class="chartMenu">
-      <p>Employees salaries | Bar chart </p>
-    </div>
-    <div class="chartCard">
-      <div class="chartBox">
-        <canvas id="myChart"></canvas>
-      </div>
-    </div>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script type="text/javascript" src="apps.js"></script>
+  
+    
 
-    <script>
-        let employeeFullName =[];
-        let employeeSalaryData =[];
+    
 
-        async function drawChart(){
-          await apiData()
-  // setup 
-      const data = {
-        labels: employeeFullName,
-        datasets: [{
-          label: 'Annual Salary',
-          data: employeeSalaryData,
-          backgroundColor: 'rgba(255, 26, 104, 0.2)',
-          borderColor: 'rgba(255, 26, 104, 1)',
-          borderWidth: 1
-       }]
-     };
-
-  // config 
-      const config = {
-        type: 'bar',
-        data,
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true
-            }
-          }
-        }
-      };
-
-      // render init block
-      const myChart = new Chart(
-        document.getElementById('myChart'),
-        config
-      );
-       //   console.log(employeeFullName)
-      }
-      drawChart()
-    </script>
-
-  </body>
+    drawChart();
+  </script>
+</body>
 </html>
