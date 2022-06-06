@@ -17,7 +17,7 @@
   employeeFullName = fullname
 }  */
 async function apiData(){
-  const apilink =  "http://dummy.restapiexample.com/api/v1/employees";
+  const apilink =  "https://dummy.restapiexample.com/api/v1/employees";
   const response = await fetch(apilink);
   const datapoint = await response.json();
   console.log(datapoint);
